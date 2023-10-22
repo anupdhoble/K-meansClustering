@@ -35,7 +35,5 @@ I would like to thank [Andrew Ng](insert_link_to_his_profile_here) for the excel
 
 ## License
 
-This project is open-source and available under the [MIT License](insert_link_to_license).
-
-![MIT License](insert_link_to_license_image)
+Rights reserved @Anup Dhoble
 
