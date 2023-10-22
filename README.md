@@ -1,6 +1,6 @@
 # K-Means Image Compression with React.js
 
-![Project Image](insert_image_url_here)
+![Project Image]([insert_image_url_here](https://github.com/anupdhoble/K-meansCustering/blob/master/Screenshot%202023-10-22%20121833.png))
 
 ## Overview
 
