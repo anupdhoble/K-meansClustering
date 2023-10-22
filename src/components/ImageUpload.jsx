@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { performKMeansClustering } from "../algorithm/kmeans";
 
+
 export default function ImageUpload() {
 
     const [image, setImage] = useState(null);
@@ -8,9 +9,15 @@ export default function ImageUpload() {
     const [uploadedSize, setUploadedSize] = useState(null);
     const [compressedSize, setCompressedSize] = useState(null);
     const [downloadLink, setDownloadLink] = useState(null);
+    const [loading, setloading] = useState(null);
     const handleImageUpload = (e) => {
+        
+        setloading(1);
         const file = e.target.files[0];
         if (file) {
+            
+            setcompressedImage(null);
+            setloading(1);
             const uploadedSizeBytes = file.size;
 
             // Calculate the size in kilobytes (KB)
@@ -73,7 +80,7 @@ export default function ImageUpload() {
                 }
                 //convert canvas to a dataURL
                 const compressedDataUrl = compressedCanvas.toDataURL("image/jpeg");
-
+                setloading(null);
                 setcompressedImage(compressedDataUrl);
 
                 // Create a Blob from the compressed data
@@ -96,8 +103,10 @@ export default function ImageUpload() {
                 // console.log(e.target.result)
                 const dataURL = e.target.result;
                 setImage(dataURL);
+                setloading(null);
                 img.src = dataURL;
             };
+            setloading(1);
             render.readAsDataURL(file);//when reading is complete onLoad is triggered
 
         }
@@ -111,6 +120,8 @@ export default function ImageUpload() {
             </div>
             <div className="images">
                 {image && <img src={image} alt="Uploaded!!" style={{ width: "30vw", borderRadius: "10px" }} className="border border-primary" />}
+                {image && <img src="./arrow.png" style={{height: "10vw",transform: "rotate(180deg)"}} alt="Arrow" />}
+                {loading&&<img src="./loading.gif" style={{height: "10vw",transform: "rotate(180deg)"}} alt="Arrow" />}
                 {compressedImage && <img src={compressedImage} alt="Compressed!!" style={{ width: "30vw", borderRadius: "10px" }} className="border border-primary" />}
             </div>
             {uploadedSize && <p>Uploaded Image Size: {uploadedSize}</p>}
